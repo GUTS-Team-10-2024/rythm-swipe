@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-[gd_scene load_steps=9 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=7 format=3 uid="uid://mk8hjrnhbag5"]
 
-[ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
-[ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
-[ext_resource type="Texture2D" uid="uid://cknb0gdmxija4" path="res://play.jpg" id="4_j8e5g"]
-[ext_resource type="Script" path="res://scenes/level_music.gd" id="5_rsh6h"]
-=======
-[gd_scene load_steps=6 format=3 uid="uid://mk8hjrnhbag5"]
-
-[ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
+[ext_resource type="Script" path="res://scenes/collision_bar.gd" id="1_2xb81"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
 [ext_resource type="PackedScene" uid="uid://ogd2sgdhfftc" path="res://scenes/arrow.tscn" id="2_kr3jl"]
->>>>>>> df2324df76cf436970aa995f880c5e208e0474e5
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
@@ -20,78 +10,36 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5d82"]
-size = Vector2(811, 20)
+[sub_resource type="Gradient" id="Gradient_ivt8k"]
+offsets = PackedFloat32Array(0, 0.534188, 0.848291, 1)
+colors = PackedColorArray(0.888068, 0.458538, 0.773801, 1, 0.554094, 0.555981, 0.482799, 1, 0.255871, 0.642992, 0.222949, 1, 0, 0.717647, 0, 1)
 
-[sub_resource type="GDScript" id="GDScript_pgkrg"]
-script/source = "extends Node
-
-
-
-func _ready():
-	var button = Button.new()
-	button.pressed.connect(self._on_button_pressed)
-	add_child(button)
-
-func _on_button_pressed():
-	var parent = get_parent()
-	var audio_player = parent.get_node(\"LevelMusic\")
-	print(\"passed\")
-	# Call the load_song method on the AudioStreamPlayer node
-	audio_player.load_song(\"thick-of-it.mp3\")
-"
-
-[sub_resource type="AudioStream" id="AudioStream_mryy2"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yoav6"]
+gradient = SubResource("Gradient_ivt8k")
+width = 800
+height = 1200
+fill_from = Vector2(0.74359, 1)
+fill_to = Vector2(0.288462, 0)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g223k")
 arrow_scene = ExtResource("2_kr3jl")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.13
+wait_time = 2.0
 autostart = true
 script = ExtResource("1_2xb81")
 
 [node name="SpawnPath" type="Path2D" parent="."]
+position = Vector2(0, -110)
 curve = SubResource("Curve2D_r22s7")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
 rotation = -0.0572176
 
-[node name="MissedCollisionShape" type="Area2D" parent="."]
-
-[node name="MissedCollisionShape2D" type="CollisionShape2D" parent="MissedCollisionShape"]
-position = Vector2(400, 977)
-shape = SubResource("RectangleShape2D_s5d82")
-debug_color = Color(0.558587, 0.427646, 0.928079, 0.42)
-
-[node name="Play Button" type="Button" parent="."]
-custom_minimum_size = Vector2(10, 10)
-offset_left = 240.0
-offset_top = 162.0
-offset_right = 722.0
-offset_bottom = 644.0
-scale = Vector2(1.01271, 1.10155)
-icon = ExtResource("4_j8e5g")
-script = SubResource("GDScript_pgkrg")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 392.0
-offset_top = 82.0
-offset_right = 494.0
-offset_bottom = 105.0
-scale = Vector2(1.8, 1.92)
-text = "Random Play
-"
-
-[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStream_mryy2")
-script = ExtResource("5_rsh6h")
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 799.0
+offset_bottom = 1195.0
+texture = SubResource("GradientTexture2D_yoav6")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-<<<<<<< HEAD
-[connection signal="pressed" from="Play Button" to="LevelMusic" method="_on_play_button_pressed"]
-=======
-[connection signal="area_shape_entered" from="MissedCollisionShape" to="." method="_on_collision_shape_area_shape_entered"]
-[connection signal="area_shape_exited" from="MissedCollisionShape" to="." method="_on_collision_shape_area_shape_exited"]
->>>>>>> df2324df76cf436970aa995f880c5e208e0474e5
