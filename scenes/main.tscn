@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=9 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/collision_bar.gd" id="1_2xb81"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
 [ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+[ext_resource type="Script" path="res://scenes/level_music.gd" id="4_by2mf"]
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
@@ -20,6 +21,8 @@ width = 800
 height = 1200
 fill_from = Vector2(0.74359, 1)
 fill_to = Vector2(0.288462, 0)
+
+[sub_resource type="AudioStream" id="AudioStream_vri6h"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g223k")
@@ -41,5 +44,9 @@ rotation = -0.0572176
 offset_right = 799.0
 offset_bottom = 1195.0
 texture = SubResource("GradientTexture2D_yoav6")
+
+[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStream_vri6h")
+script = ExtResource("4_by2mf")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
