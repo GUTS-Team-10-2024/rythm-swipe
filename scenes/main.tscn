@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=7 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/collision_bar.gd" id="1_2xb81"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
@@ -9,6 +9,17 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 142.824, -8.18097, 0, 0, 0, 0, 800, 0)
 }
 point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ivt8k"]
+offsets = PackedFloat32Array(0, 0.534188, 0.848291, 1)
+colors = PackedColorArray(0.888068, 0.458538, 0.773801, 1, 0.554094, 0.555981, 0.482799, 1, 0.255871, 0.642992, 0.222949, 1, 0, 0.717647, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yoav6"]
+gradient = SubResource("Gradient_ivt8k")
+width = 800
+height = 1200
+fill_from = Vector2(0.74359, 1)
+fill_to = Vector2(0.288462, 0)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g223k")
@@ -25,5 +36,10 @@ curve = SubResource("Curve2D_r22s7")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
 rotation = -0.0572176
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 799.0
+offset_bottom = 1195.0
+texture = SubResource("GradientTexture2D_yoav6")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
