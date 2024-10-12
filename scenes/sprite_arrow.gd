@@ -17,14 +17,10 @@ func _process(delta: float) -> void:
 	velocity = Vector2.DOWN * speed
 	
 	position += velocity * delta
+	if position.y > screen_size.y * 0.9:
+		queue_free()
 	
 	#if Input.is_action_pressed("ui_left"):
 		#visible = not visible
 		
 		
-
-
-#func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	#hide()
-	#hit.emit()
-	#$CollisionShape2D.set_deferred("disabled", true)

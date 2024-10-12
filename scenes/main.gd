@@ -42,3 +42,11 @@ func _on_spawn_timer_timeout() -> void:
 	
 	add_child(new_arrow) # now the arrow becomes active
 	
+
+
+func _on_collision_shape_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	pass # Replace with function body.
+
+
+func _on_collision_shape_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	pass # Replace with function body.

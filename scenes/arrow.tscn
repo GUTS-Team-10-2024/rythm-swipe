@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnndt2mtaclls"]
+[gd_scene load_steps=4 format=3 uid="uid://ogd2sgdhfftc"]
 
+[ext_resource type="Texture2D" uid="uid://8sdtb7oyx6sp" path="res://icon.svg" id="1_0pqye"]
 [ext_resource type="Script" path="res://scenes/sprite_arrow.gd" id="2_vcobl"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u3lbm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fixyu"]
 radius = 87.0
@@ -11,10 +10,8 @@ height = 174.0
 [node name="Arrow" type="Area2D"]
 script = ExtResource("2_vcobl")
 
-[node name="SpriteArrow" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_u3lbm")
+[node name="SpriteArrow" type="Sprite2D" parent="."]
+texture = ExtResource("1_0pqye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fixyu")
-
-[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
