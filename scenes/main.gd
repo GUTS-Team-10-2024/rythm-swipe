@@ -2,6 +2,7 @@ extends Node2D
 
 @export var arrow_scene: PackedScene
 var score
+var health
 @export var left_arrow_spawn_position  = 0.10
 @export var up_arrow_spawn_position    = 0.25
 @export var hit_spawn_position         = 0.50
@@ -9,7 +10,7 @@ var score
 @export var right_arrow_spawn_position = 0.90
 
 func _ready() -> void:
-	pass
+	health = 3
 
 func _process(delta: float) -> void:
 	pass
@@ -41,4 +42,8 @@ func _on_spawn_timer_timeout() -> void:
 	new_arrow.position = arrow_spawn_location.position
 	
 	add_child(new_arrow) # now the arrow becomes active
-	
+
+func take_damage() -> void:
+	health -= 1
+	if health == 0:
+		game_over()
