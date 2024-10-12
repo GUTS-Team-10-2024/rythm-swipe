@@ -1,15 +1,8 @@
 extends Node2D
 
 @export var arrow_scene: PackedScene
-<<<<<<< HEAD
 @export var left_arrow_spawn_position  = 0.10
 @export var up_arrow_spawn_position    = 0.25
-=======
-var score
-var health
-@export var left_arrow_spawn_position  = 0.20
-@export var up_arrow_spawn_position    = 0.30
->>>>>>> c7889a34348502cde4fe4b48fb29c57b76e74062
 @export var hit_spawn_position         = 0.50
 @export var down_arrow_spawn_position  = 0.70
 @export var right_arrow_spawn_position = 0.80
