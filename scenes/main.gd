@@ -30,7 +30,6 @@ func _on_spawn_timer_timeout() -> void:
 	var d = randi_range(0, 5)
 	if d == 0:
 		arrow_spawn_location.progress_ratio = left_arrow_spawn_position
-		# TODO set the tyoe (direction) of the arrow
 	elif d == 1:
 		arrow_spawn_location.progress_ratio = up_arrow_spawn_position
 	elif d == 2:
@@ -40,6 +39,7 @@ func _on_spawn_timer_timeout() -> void:
 	else:
 		arrow_spawn_location.progress_ratio = right_arrow_spawn_position
 	new_arrow.position = arrow_spawn_location.position
+	new_arrow.direction = d
 	
 	add_child(new_arrow) # now the arrow becomes active
 
