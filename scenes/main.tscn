@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=9 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
@@ -5,12 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
 [ext_resource type="Texture2D" uid="uid://cknb0gdmxija4" path="res://play.jpg" id="4_j8e5g"]
 [ext_resource type="Script" path="res://scenes/level_music.gd" id="5_rsh6h"]
+=======
+[gd_scene load_steps=6 format=3 uid="uid://mk8hjrnhbag5"]
+
+[ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
+[ext_resource type="PackedScene" uid="uid://ogd2sgdhfftc" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+>>>>>>> df2324df76cf436970aa995f880c5e208e0474e5
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 142.824, -8.18097, 0, 0, 0, 0, 800, 0)
 }
-point_count = 2
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5d82"]
+size = Vector2(811, 20)
 
 [sub_resource type="GDScript" id="GDScript_pgkrg"]
 script/source = "extends Node
@@ -45,6 +56,14 @@ script = ExtResource("1_2xb81")
 curve = SubResource("Curve2D_r22s7")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
+rotation = -0.0572176
+
+[node name="MissedCollisionShape" type="Area2D" parent="."]
+
+[node name="MissedCollisionShape2D" type="CollisionShape2D" parent="MissedCollisionShape"]
+position = Vector2(400, 977)
+shape = SubResource("RectangleShape2D_s5d82")
+debug_color = Color(0.558587, 0.427646, 0.928079, 0.42)
 
 [node name="Play Button" type="Button" parent="."]
 custom_minimum_size = Vector2(10, 10)
@@ -70,4 +89,9 @@ stream = SubResource("AudioStream_mryy2")
 script = ExtResource("5_rsh6h")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+<<<<<<< HEAD
 [connection signal="pressed" from="Play Button" to="LevelMusic" method="_on_play_button_pressed"]
+=======
+[connection signal="area_shape_entered" from="MissedCollisionShape" to="." method="_on_collision_shape_area_shape_entered"]
+[connection signal="area_shape_exited" from="MissedCollisionShape" to="." method="_on_collision_shape_area_shape_exited"]
+>>>>>>> df2324df76cf436970aa995f880c5e208e0474e5
