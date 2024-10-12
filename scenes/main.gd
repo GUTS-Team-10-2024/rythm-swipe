@@ -34,7 +34,7 @@ func _on_spawn_timer_timeout() -> void:
 		arrow_spawn_location.progress_ratio = down_arrow_spawn_position
 	else:
 		arrow_spawn_location.progress_ratio = right_arrow_spawn_position
-	new_arrow.position = arrow_spawn_location
+	new_arrow.position = arrow_spawn_location.position
 	
 	add_child(new_arrow) # now the arrow becomes active
 	
