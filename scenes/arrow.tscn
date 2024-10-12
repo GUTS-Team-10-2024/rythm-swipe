@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://duackbx5dsth1"]
+[gd_scene load_steps=6 format=3 uid="uid://dnndt2mtaclls"]
+
+[ext_resource type="Texture2D" uid="uid://8sdtb7oyx6sp" path="res://icon.svg" id="1_0pqye"]
+[ext_resource type="Script" path="res://scenes/sprite_arrow.gd" id="2_vcobl"]
+[ext_resource type="Script" path="res://scenes/sprite_arrow_up.gd" id="3_4o6f4"]
+[ext_resource type="Script" path="res://scenes/sprite_arrow_down.gd" id="4_nhm3w"]
+[ext_resource type="Script" path="res://scenes/sprite_arrow_right.gd" id="5_quq0c"]
 
 [node name="Arrow" type="Node2D"]
+
+[node name="SpriteArrowLeft" type="Sprite2D" parent="."]
+position = Vector2(144, 106)
+texture = ExtResource("1_0pqye")
+script = ExtResource("2_vcobl")
+
+[node name="SpriteArrowUp" type="Sprite2D" parent="."]
+position = Vector2(333, 106)
+texture = ExtResource("1_0pqye")
+script = ExtResource("3_4o6f4")
+
+[node name="SpriteArrowDown" type="Sprite2D" parent="."]
+position = Vector2(799, 113)
+texture = ExtResource("1_0pqye")
+script = ExtResource("4_nhm3w")
+
+[node name="SpriteArrowRight" type="Sprite2D" parent="."]
+position = Vector2(1017, 93)
+texture = ExtResource("1_0pqye")
+script = ExtResource("5_quq0c")
