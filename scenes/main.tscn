@@ -15,12 +15,12 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_ivt8k"]
+[sub_resource type="Gradient" id="Gradient_7v06b"]
 offsets = PackedFloat32Array(0, 0.534188, 0.848291, 1)
 colors = PackedColorArray(0.888068, 0.458538, 0.773801, 1, 0.554094, 0.555981, 0.482799, 1, 0.255871, 0.642992, 0.222949, 1, 0, 0.717647, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yoav6"]
-gradient = SubResource("Gradient_ivt8k")
+gradient = SubResource("Gradient_7v06b")
 width = 800
 height = 1200
 fill_from = Vector2(0.74359, 1)
