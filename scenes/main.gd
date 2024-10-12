@@ -6,6 +6,7 @@ extends Node2D
 @export var hit_spawn_position         = 0.50
 @export var down_arrow_spawn_position  = 0.70
 @export var right_arrow_spawn_position = 0.80
+var arrows_in_zone = Array()
 
 func _ready() -> void:
 	Player.health = 3
@@ -13,6 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Player.health == 0:
 		game_over()
+	
 
 func new_game() -> void:
 	Player.score = 0

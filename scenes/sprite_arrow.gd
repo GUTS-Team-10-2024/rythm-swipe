@@ -7,7 +7,7 @@ signal hit
 var dead_zone
 var perfect_zone
 @export var dead_zone_height_ratio = 0.9
-@export var perfect_zone_height_ratio = 0.8
+@export var perfect_zone_y = 850 # middle of the sweet zone
 @export var max_distance = 100
 
 var velocity = Vector2.ZERO
@@ -27,7 +27,7 @@ func _ready():
 
 	var size_y = get_viewport_rect().size.y
 	dead_zone = size_y * dead_zone_height_ratio
-	perfect_zone = -size_y * perfect_zone_height_ratio
+	#perfect_zone = -size_y * perfect_zone_height_ratio
 
 
 
@@ -49,9 +49,11 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	$AnimatedSprite2D.play()
 	
-	if position.y > perfect_zone - max_distance or position.y < perfect_zone + max_distance:
+	var up_bound   = position.y > perfect_zone_y - max_distance
+	var down_bound = position.y < perfect_zone_y + max_distance
+	if up_bound and down_bound: # the perfect zone
 		if user_pressed == direction:
-			var dist = position.y - perfect_zone
+			var dist = position.y - perfect_zone_y
 			print("nice!", dist, position.y)
 			# TODO get score
 			queue_free()
