@@ -2,6 +2,7 @@ extends Node2D
 
 @export var arrow_scene: PackedScene
 var score
+var health
 @export var left_arrow_spawn_position  = 0.10
 @export var up_arrow_spawn_position    = 0.25
 @export var hit_spawn_position         = 0.50
@@ -9,7 +10,7 @@ var score
 @export var right_arrow_spawn_position = 0.90
 
 func _ready() -> void:
-	pass
+	health = 3
 
 func _process(delta: float) -> void:
 	pass
@@ -29,7 +30,6 @@ func _on_spawn_timer_timeout() -> void:
 	var d = randi_range(0, 5)
 	if d == 0:
 		arrow_spawn_location.progress_ratio = left_arrow_spawn_position
-		# TODO set the tyoe (direction) of the arrow
 	elif d == 1:
 		arrow_spawn_location.progress_ratio = up_arrow_spawn_position
 	elif d == 2:
@@ -39,8 +39,10 @@ func _on_spawn_timer_timeout() -> void:
 	else:
 		arrow_spawn_location.progress_ratio = right_arrow_spawn_position
 	new_arrow.position = arrow_spawn_location.position
+	new_arrow.direction = d
 	
 	add_child(new_arrow) # now the arrow becomes active
+
 	
 
 
@@ -50,3 +52,8 @@ func _on_collision_shape_area_shape_entered(area_rid: RID, area: Area2D, area_sh
 
 func _on_collision_shape_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	pass # Replace with function body.
+
+func take_damage() -> void:
+	health -= 1
+	if health == 0:
+		game_over()

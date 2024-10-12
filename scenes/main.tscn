@@ -31,7 +31,7 @@ rotation = -0.0572176
 [node name="MissedCollisionShape" type="Area2D" parent="."]
 
 [node name="MissedCollisionShape2D" type="CollisionShape2D" parent="MissedCollisionShape"]
-position = Vector2(401, 1035)
+position = Vector2(400, 977)
 shape = SubResource("RectangleShape2D_s5d82")
 debug_color = Color(0.558587, 0.427646, 0.928079, 0.42)
 

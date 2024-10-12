@@ -18,9 +18,7 @@ func _process(delta: float) -> void:
 	
 	position += velocity * delta
 	if position.y > screen_size.y * 0.9:
+		# take damage
 		queue_free()
-	
-	#if Input.is_action_pressed("ui_left"):
-		#visible = not visible
 		
-		
+	# check shape and input
