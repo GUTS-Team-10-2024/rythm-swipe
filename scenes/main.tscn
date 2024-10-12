@@ -1,14 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=9 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
 [ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+[ext_resource type="Texture2D" uid="uid://cknb0gdmxija4" path="res://play.jpg" id="4_j8e5g"]
+[ext_resource type="Script" path="res://scenes/level_music.gd" id="5_rsh6h"]
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0)
 }
 point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_pgkrg"]
+script/source = "extends Node
+
+
+
+func _ready():
+	var button = Button.new()
+	button.pressed.connect(self._on_button_pressed)
+	add_child(button)
+
+func _on_button_pressed():
+	var parent = get_parent()
+	var audio_player = parent.get_node(\"LevelMusic\")
+	print(\"passed\")
+	# Call the load_song method on the AudioStreamPlayer node
+	audio_player.load_song(\"thick-of-it.mp3\")
+"
+
+[sub_resource type="AudioStream" id="AudioStream_mryy2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g223k")
@@ -24,4 +46,28 @@ curve = SubResource("Curve2D_r22s7")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
 
+[node name="Play Button" type="Button" parent="."]
+custom_minimum_size = Vector2(10, 10)
+offset_left = 240.0
+offset_top = 162.0
+offset_right = 722.0
+offset_bottom = 644.0
+scale = Vector2(1.01271, 1.10155)
+icon = ExtResource("4_j8e5g")
+script = SubResource("GDScript_pgkrg")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 392.0
+offset_top = 82.0
+offset_right = 494.0
+offset_bottom = 105.0
+scale = Vector2(1.8, 1.92)
+text = "Random Play
+"
+
+[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStream_mryy2")
+script = ExtResource("5_rsh6h")
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="Play Button" to="LevelMusic" method="_on_play_button_pressed"]
