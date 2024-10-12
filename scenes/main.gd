@@ -34,7 +34,7 @@ func _on_spawn_timer_timeout() -> void:
 	arrow_start_speed += speed_increase_per_new_ball
 	var new_arrow = arrow_scene.instantiate()
 	var arrow_spawn_location = $SpawnPath/SpawnLocation
-	var d = randi_range(0, 5)
+	var d = randi_range(0, 4)
 	if d == 0:
 		arrow_spawn_location.progress_ratio = left_arrow_spawn_position
 	elif d == 1:

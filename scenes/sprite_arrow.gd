@@ -65,18 +65,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var user_pressed = -1
-	if Input.is_action_pressed("left") or getSwipe() == "left":
-		user_pressed = 0
-	if Input.is_action_pressed("up") or getSwipe() == "up":
-		user_pressed = 1
-	if Input.is_action_pressed("hit") or getSwipe() == "tap":
-		user_pressed = 2
-	if Input.is_action_pressed("down") or getSwipe() == "down":
-		user_pressed = 3
-	if Input.is_action_pressed("right") or getSwipe() == "right":
-		user_pressed = 4
-	
 	velocity = Vector2.DOWN * speed
 	position += velocity * delta
 	$AnimatedSprite2D.play()
@@ -84,9 +72,22 @@ func _process(delta: float) -> void:
 	var up_bound   = position.y > perfect_zone_y - max_distance
 	var down_bound = position.y < perfect_zone_y + max_distance
 	if up_bound and down_bound: # the perfect zone
-		if user_pressed == direction:
+		# handle input
+		var user_pressed = [false, false, false, false, false]
+		var swipe = getSwipe()
+		if Input.is_action_pressed("left") or swipe == "left":
+			user_pressed[0] = true
+		if Input.is_action_pressed("up") or swipe == "up":
+			user_pressed[1] = true
+		if Input.is_action_pressed("hit") or swipe == "tap":
+			user_pressed[2] = true
+		if Input.is_action_pressed("down") or swipe == "down":
+			user_pressed[3] = true
+		if Input.is_action_pressed("right") or swipe == "right":
+			user_pressed[4] = true
+		
+		if user_pressed[direction]:
 			var dist = position.y - perfect_zone_y
-			#print("nice!", dist, position.y)
 			Player.add_score(dist)
 			queue_free()
 	

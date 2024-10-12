@@ -62,9 +62,9 @@ stream = SubResource("AudioStream_vri6h")
 script = ExtResource("4_by2mf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 760.0
+offset_top = 750.0
 offset_right = 800.0
-offset_bottom = 940.0
+offset_bottom = 950.0
 color = Color(1, 1, 1, 0.247059)
 
 [node name="LivesLabel" type="Label" parent="."]
