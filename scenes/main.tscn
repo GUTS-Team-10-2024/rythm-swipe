@@ -1,7 +1,27 @@
-[gd_scene format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=5 format=3 uid="uid://mk8hjrnhbag5"]
+
+[ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
+[ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+
+[sub_resource type="Curve2D" id="Curve2D_r22s7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0)
+}
+point_count = 2
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_g223k")
+arrow_scene = ExtResource("2_kr3jl")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.13
+autostart = true
+script = ExtResource("1_2xb81")
 
-[node name="AndreiNode" type="Node2D" parent="."]
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r22s7")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
