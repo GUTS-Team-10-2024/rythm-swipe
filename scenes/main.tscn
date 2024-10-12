@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=10 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
 [ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
 [ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="3_hjm44"]
+[ext_resource type="Script" path="res://scenes/lives_label.gd" id="4_y62xv"]
+[ext_resource type="Script" path="res://scenes/score_label.gd" id="5_1eh6q"]
+[ext_resource type="Script" path="res://scenes/speed_label.gd" id="6_scpw7"]
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
@@ -38,14 +41,38 @@ curve = SubResource("Curve2D_r22s7")
 rotation = -0.0572176
 
 [node name="Background" type="TextureRect" parent="."]
-offset_right = 799.0
-offset_bottom = 1195.0
+offset_right = 800.0
+offset_bottom = 1200.0
 texture = SubResource("GradientTexture2D_yoav6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 900.0
+offset_top = 800.0
 offset_right = 800.0
-offset_bottom = 1000.0
+offset_bottom = 900.0
 color = Color(1, 1, 1, 0.247059)
+
+[node name="LivesLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 15.0
+offset_right = 172.0
+offset_bottom = 38.0
+text = "Lives: ❤️❤️❤️"
+script = ExtResource("4_y62xv")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 680.0
+offset_top = 22.0
+offset_right = 770.0
+offset_bottom = 45.0
+text = "Score:"
+script = ExtResource("5_1eh6q")
+
+[node name="SpeedLabel" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 62.0
+offset_right = 136.0
+offset_bottom = 85.0
+text = "Speed:"
+script = ExtResource("6_scpw7")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

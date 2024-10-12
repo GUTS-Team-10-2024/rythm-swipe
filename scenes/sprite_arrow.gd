@@ -1,14 +1,14 @@
 extends Area2D
 signal hit
 
-@export var speed = 200
+@export var speed = 300
 @export var direction = 0
 # for points!
 var dead_zone
 var perfect_zone
 @export var dead_zone_height_ratio = 0.9
 @export var perfect_zone_y = 850 # middle of the sweet zone
-@export var max_distance = 100
+@export var max_distance = 50
 
 var velocity = Vector2.ZERO
 
@@ -54,12 +54,12 @@ func _process(delta: float) -> void:
 	if up_bound and down_bound: # the perfect zone
 		if user_pressed == direction:
 			var dist = position.y - perfect_zone_y
-			print("nice!", dist, position.y)
-			# TODO get score
+			#print("nice!", dist, position.y)
+			Player.add_score(dist)
 			queue_free()
 	
 	if position.y > dead_zone:
-		# TODO take damage
+		Player.take_damage()
 		queue_free()
 		
 	# check shape and input
