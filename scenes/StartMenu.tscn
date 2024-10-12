@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctbboufbgx0od"]
+[gd_scene load_steps=4 format=3 uid="uid://ctbboufbgx0od"]
 
 [ext_resource type="Script" path="res://scenes/start_menu.gd" id="1_wjxqw"]
+
+[sub_resource type="Gradient" id="Gradient_ivt8k"]
+offsets = PackedFloat32Array(0, 0.514894, 0.848291, 1)
+colors = PackedColorArray(0.607392, 0.176439, 0.510745, 1, 0.38585, 0.38728, 0.326201, 1, 0.183087, 0.464487, 0.158885, 1, 0, 0.453848, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2nut5"]
+gradient = SubResource("Gradient_ivt8k")
+width = 800
+height = 1200
+fill_from = Vector2(0.74359, 1)
+fill_to = Vector2(0.288462, 0)
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_wjxqw")
@@ -11,5 +22,10 @@ offset_top = 524.0
 offset_right = 528.0
 offset_bottom = 694.0
 text = "Play"
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 800.0
+offset_bottom = 1200.0
+texture = SubResource("GradientTexture2D_2nut5")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
