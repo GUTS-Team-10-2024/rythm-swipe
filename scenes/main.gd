@@ -7,7 +7,7 @@ extends Node2D
 @export var down_arrow_spawn_position  = 0.65
 @export var right_arrow_spawn_position = 0.80
 @export var arrow_start_speed           = 200
-@export var speed_increase_per_new_ball = 3
+@export var speed_increase_per_new_ball = 3.5
 
 func _ready() -> void:
 	Player.health = 3
@@ -29,9 +29,12 @@ func game_over() -> void:
 	$GameOverScreen.visible = true
 	$SpawnTimer.stop()
 
+func speed_up() -> void:
+	arrow_start_speed += speed_increase_per_new_ball
+
 # Spawn Timer Tick
 func _on_spawn_timer_timeout() -> void:
-	arrow_start_speed += speed_increase_per_new_ball
+	speed_up()
 	var new_arrow = arrow_scene.instantiate()
 	var arrow_spawn_location = $SpawnPath/SpawnLocation
 	var d = randi_range(0, 4)

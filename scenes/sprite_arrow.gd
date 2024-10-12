@@ -4,9 +4,7 @@ signal hit
 @export var speed = 300
 @export var direction = 0
 # for points!
-var dead_zone
-var perfect_zone
-@export var dead_zone_height_ratio = 0.9
+@export var dead_zone = 1080
 @export var perfect_zone_y = 850 # middle of the sweet zone
 @export var max_distance = 100
 
@@ -58,11 +56,6 @@ func _ready():
 	else:
 		$AnimatedSprite2D.animation = "right"
 
-	var size_y = get_viewport_rect().size.y
-	dead_zone = size_y * dead_zone_height_ratio
-	#perfect_zone = -size_y * perfect_zone_height_ratio
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	velocity = Vector2.DOWN * speed
@@ -87,12 +80,18 @@ func _process(delta: float) -> void:
 			user_pressed[4] = true
 		
 		if user_pressed[direction]:
-			var dist = position.y - perfect_zone_y
-			Player.add_score(dist)
-			queue_free()
+			var valid = false
+			if direction == 2:
+				# special case just for hit
+				if not (user_pressed[0] or user_pressed[1] or user_pressed[3] or user_pressed[4]):
+					valid = true
+			else:
+				valid = true
+			if valid:
+				var dist = position.y - perfect_zone_y
+				Player.add_score(dist)
+				queue_free()
 	
 	if position.y > dead_zone:
 		Player.take_damage()
 		queue_free()
-		
-	# check shape and input
