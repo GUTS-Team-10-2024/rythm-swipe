@@ -15,11 +15,12 @@ script = ExtResource("1_g223k")
 arrow_scene = ExtResource("2_kr3jl")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.13
+wait_time = 2.0
 autostart = true
 script = ExtResource("1_2xb81")
 
 [node name="SpawnPath" type="Path2D" parent="."]
+position = Vector2(0, -110)
 curve = SubResource("Curve2D_r22s7")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]

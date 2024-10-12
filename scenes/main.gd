@@ -3,11 +3,11 @@ extends Node2D
 @export var arrow_scene: PackedScene
 var score
 var health
-@export var left_arrow_spawn_position  = 0.10
-@export var up_arrow_spawn_position    = 0.25
+@export var left_arrow_spawn_position  = 0.20
+@export var up_arrow_spawn_position    = 0.30
 @export var hit_spawn_position         = 0.50
-@export var down_arrow_spawn_position  = 0.75
-@export var right_arrow_spawn_position = 0.90
+@export var down_arrow_spawn_position  = 0.70
+@export var right_arrow_spawn_position = 0.80
 
 func _ready() -> void:
 	health = 3

@@ -1,30 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnndt2mtaclls"]
+[gd_scene load_steps=4 format=3 uid="uid://dnndt2mtaclls"]
 
-[ext_resource type="Texture2D" uid="uid://8sdtb7oyx6sp" path="res://icon.svg" id="2_mrkmc"]
+[ext_resource type="SpriteFrames" uid="uid://qj3joeu0gi8w" path="res://sprites/arrow_sprites.tres" id="2_e2kpo"]
 [ext_resource type="Script" path="res://scenes/sprite_arrow.gd" id="2_vcobl"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u3lbm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_mrkmc")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fixyu"]
 radius = 87.0
 height = 174.0
 
 [node name="Arrow" type="Area2D"]
+position = Vector2(0, -209)
+scale = Vector2(1.25, 1.25)
 script = ExtResource("2_vcobl")
-
-[node name="SpriteArrow" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_u3lbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fixyu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(5.5, 5.5)
+sprite_frames = ExtResource("2_e2kpo")
+animation = &"circle"
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
