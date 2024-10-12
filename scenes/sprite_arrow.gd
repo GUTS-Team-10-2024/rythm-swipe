@@ -12,6 +12,39 @@ var perfect_zone
 
 var velocity = Vector2.ZERO
 
+# mobile swiping
+var startPos: Vector2
+var endPos: Vector2
+const threshold = 50
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("tap"):
+		startPos = event.position
+	if Input.is_action_just_released("tap"):
+		endPos = event.position
+		getSwipe()
+
+func getSwipe():
+	if Input.is_action_just_pressed("tap"):
+		startPos = get_global_mouse_position()
+	if Input.is_action_just_released("tap"):
+		endPos = get_global_mouse_position()
+	var d := endPos - startPos
+	if d.length_squared() > threshold: 
+		if abs(d.x) > abs(d.y):
+			if d.x < 0:
+				return "left"
+			else:
+				return "right"
+		else:
+			if d.y > 0:
+				return "down"
+			else:
+				return "up"
+	elif startPos.distance_to(endPos) == 0:
+		return "tap"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if direction == 0:
@@ -30,19 +63,18 @@ func _ready():
 	#perfect_zone = -size_y * perfect_zone_height_ratio
 
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var user_pressed = -1
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left") or getSwipe() == "left":
 		user_pressed = 0
-	if Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up") or getSwipe() == "up":
 		user_pressed = 1
-	if Input.is_action_pressed("hit"):
+	if Input.is_action_pressed("hit") or getSwipe() == "tap":
 		user_pressed = 2
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down") or getSwipe() == "down":
 		user_pressed = 3
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right") or getSwipe() == "right":
 		user_pressed = 4
 	
 	velocity = Vector2.DOWN * speed
