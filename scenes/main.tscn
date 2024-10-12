@@ -82,4 +82,11 @@ offset_bottom = 85.0
 text = "Speed:"
 script = ExtResource("6_scpw7")
 
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

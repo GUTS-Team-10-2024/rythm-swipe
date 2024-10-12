@@ -1,27 +1,30 @@
 extends Node2D
 
 @export var arrow_scene: PackedScene
-@export var left_arrow_spawn_position  = 0.10
-@export var up_arrow_spawn_position    = 0.25
+@export var left_arrow_spawn_position  = 0.20
+@export var up_arrow_spawn_position    = 0.35
 @export var hit_spawn_position         = 0.50
-@export var down_arrow_spawn_position  = 0.70
+@export var down_arrow_spawn_position  = 0.65
 @export var right_arrow_spawn_position = 0.80
 @export var arrow_start_speed = 200
 
 func _ready() -> void:
 	Player.health = 3
+	Player.score = 0
 
 func _process(delta: float) -> void:
 	if Player.health == 0:
 		game_over()
-	
 
 func new_game() -> void:
 	Player.score = 0
+	Player.health = 3
+	arrow_start_speed = 200
 	$SpawnTimer.start()
+	set_process(true)
 
 func game_over() -> void:
-	print(Player.score)
+	set_process(false)
 	$SpawnTimer.stop()
 
 # Spawn Timer Tick
