@@ -11,11 +11,8 @@ config_version=5
 [application]
 
 config/name="rythm-swipe"
-<<<<<<< HEAD
 run/main_scene="res://scenes/arrow.tscn"
-=======
 run/main_scene="res://scenes/main.tscn"
->>>>>>> ed641c22749371c19f688ebfb44975e1a55374e2
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
