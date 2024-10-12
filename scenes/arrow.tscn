@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnndt2mtaclls"]
 
-[ext_resource type="SpriteFrames" path="res://sprites/arrow_sprites.tres" id="2_e2kpo"]
+[ext_resource type="SpriteFrames" uid="uid://qj3joeu0gi8w" path="res://sprites/arrow_sprites.tres" id="2_e2kpo"]
 [ext_resource type="Script" path="res://scenes/sprite_arrow.gd" id="2_vcobl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fixyu"]
