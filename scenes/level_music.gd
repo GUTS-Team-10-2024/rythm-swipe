@@ -14,7 +14,6 @@ var song_bpm = {
 }
 
 func _ready():
-	
 	var random_song = get_random_song(song_list)
 	print(random_song)
 	load_song(random_song)	

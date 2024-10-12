@@ -8,7 +8,7 @@ var dead_zone
 var perfect_zone
 @export var dead_zone_height_ratio = 0.9
 @export var perfect_zone_y = 850 # middle of the sweet zone
-@export var max_distance = 50
+@export var max_distance = 100
 
 var velocity = Vector2.ZERO
 
