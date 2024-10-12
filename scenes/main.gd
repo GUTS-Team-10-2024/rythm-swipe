@@ -10,18 +10,21 @@ extends Node2D
 
 func _ready() -> void:
 	Player.health = 3
+	Player.score = 0
 
 func _process(delta: float) -> void:
 	if Player.health == 0:
 		game_over()
-	
 
 func new_game() -> void:
 	Player.score = 0
+	Player.health = 3
+	arrow_start_speed = 200
 	$SpawnTimer.start()
+	set_process(true)
 
 func game_over() -> void:
-	print(Player.score)
+	set_process(false)
 	$SpawnTimer.stop()
 
 # Spawn Timer Tick
