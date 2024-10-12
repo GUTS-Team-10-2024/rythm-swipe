@@ -1,8 +1,6 @@
 extends Node2D
 
 @export var arrow_scene: PackedScene
-var score
-var health
 @export var left_arrow_spawn_position  = 0.10
 @export var up_arrow_spawn_position    = 0.25
 @export var hit_spawn_position         = 0.50
@@ -10,17 +8,18 @@ var health
 @export var right_arrow_spawn_position = 0.90
 
 func _ready() -> void:
-	health = 3
+	Player.health = 3
 
 func _process(delta: float) -> void:
-	pass
+	if Player.health == 0:
+		game_over()
 
 func new_game() -> void:
-	score = 0
+	Player.score = 0
 	$SpawnTimer.start()
 
 func game_over() -> void:
-	print(score)
+	print(Player.score)
 	$SpawnTimer.stop()
 
 # Spawn Timer Tick
@@ -42,18 +41,3 @@ func _on_spawn_timer_timeout() -> void:
 	new_arrow.direction = d
 	
 	add_child(new_arrow) # now the arrow becomes active
-
-	
-
-
-func _on_collision_shape_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
-
-
-func _on_collision_shape_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
-
-func take_damage() -> void:
-	health -= 1
-	if health == 0:
-		game_over()
