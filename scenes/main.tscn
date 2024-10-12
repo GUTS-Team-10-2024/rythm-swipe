@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="1_2xb81"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
-[ext_resource type="PackedScene" uid="uid://duackbx5dsth1" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+[ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
