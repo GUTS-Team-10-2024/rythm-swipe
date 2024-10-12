@@ -6,6 +6,7 @@ extends Node2D
 @export var hit_spawn_position         = 0.50
 @export var down_arrow_spawn_position  = 0.70
 @export var right_arrow_spawn_position = 0.80
+@export var arrow_start_speed = 200
 
 func _ready() -> void:
 	Player.health = 3
@@ -13,6 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Player.health == 0:
 		game_over()
+	
 
 func new_game() -> void:
 	Player.score = 0
@@ -24,6 +26,7 @@ func game_over() -> void:
 
 # Spawn Timer Tick
 func _on_spawn_timer_timeout() -> void:
+	arrow_start_speed += 1
 	var new_arrow = arrow_scene.instantiate()
 	var arrow_spawn_location = $SpawnPath/SpawnLocation
 	var d = randi_range(0, 5)
@@ -38,6 +41,10 @@ func _on_spawn_timer_timeout() -> void:
 	else:
 		arrow_spawn_location.progress_ratio = right_arrow_spawn_position
 	new_arrow.position = arrow_spawn_location.position
+	new_arrow.speed = arrow_start_speed
 	new_arrow.direction = d
 	
 	add_child(new_arrow) # now the arrow becomes active
+
+func get_speed() -> int:
+	return arrow_start_speed
