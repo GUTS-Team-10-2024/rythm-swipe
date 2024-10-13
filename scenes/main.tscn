@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=15 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
 [ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+[ext_resource type="PackedScene" uid="uid://wq4l8k0n3ctq" path="res://scenes/bubble.tscn" id="3_1lhdd"]
 [ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="3_hjm44"]
 [ext_resource type="Script" path="res://scenes/level_music.gd" id="4_by2mf"]
 [ext_resource type="Script" path="res://scenes/lives_label.gd" id="4_y62xv"]
 [ext_resource type="Script" path="res://scenes/score_label.gd" id="5_1eh6q"]
 [ext_resource type="Script" path="res://scenes/speed_label.gd" id="6_scpw7"]
+[ext_resource type="Script" path="res://scenes/main_menu_button.gd" id="8_estvy"]
 
 [sub_resource type="Curve2D" id="Curve2D_r22s7"]
 _data = {
@@ -14,12 +16,12 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_ivt8k"]
+[sub_resource type="Gradient" id="Gradient_7v06b"]
 offsets = PackedFloat32Array(0, 0.534188, 0.848291, 1)
 colors = PackedColorArray(0.888068, 0.458538, 0.773801, 1, 0.554094, 0.555981, 0.482799, 1, 0.255871, 0.642992, 0.222949, 1, 0, 0.717647, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yoav6"]
-gradient = SubResource("Gradient_ivt8k")
+gradient = SubResource("Gradient_7v06b")
 width = 800
 height = 1200
 fill_from = Vector2(0.74359, 1)
@@ -27,9 +29,18 @@ fill_to = Vector2(0.288462, 0)
 
 [sub_resource type="AudioStream" id="AudioStream_vri6h"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_wh7ks"]
+font_size = 50
+font_color = Color(0.98653, 9.72241e-06, 0.611836, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.721569)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g223k")
 arrow_scene = ExtResource("2_kr3jl")
+bubble_scene = ExtResource("3_1lhdd")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -53,9 +64,9 @@ stream = SubResource("AudioStream_vri6h")
 script = ExtResource("4_by2mf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 800.0
+offset_top = 750.0
 offset_right = 800.0
-offset_bottom = 900.0
+offset_bottom = 950.0
 color = Color(1, 1, 1, 0.247059)
 
 [node name="LivesLabel" type="Label" parent="."]
@@ -82,4 +93,40 @@ offset_bottom = 85.0
 text = "Speed:"
 script = ExtResource("6_scpw7")
 
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverLabel" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 272.0
+offset_top = 257.0
+offset_right = 488.0
+offset_bottom = 313.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER!!"
+label_settings = SubResource("LabelSettings_wh7ks")
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 541.0
+offset_right = 515.0
+offset_bottom = 621.0
+text = "Back to Menu...
+"
+script = ExtResource("8_estvy")
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="finished" from="LevelMusic" to="LevelMusic" method="_on_finished"]
+[connection signal="pressed" from="GameOverScreen/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -1,35 +1,59 @@
 extends Node2D
 
 @export var arrow_scene: PackedScene
-@export var left_arrow_spawn_position  = 0.10
-@export var up_arrow_spawn_position    = 0.25
+@export var bubble_scene: PackedScene
+# Arrow Spawn X values
+@export var left_arrow_spawn_position  = 0.20
+@export var up_arrow_spawn_position    = 0.35
 @export var hit_spawn_position         = 0.50
-@export var down_arrow_spawn_position  = 0.70
+@export var down_arrow_spawn_position  = 0.65
 @export var right_arrow_spawn_position = 0.80
-@export var arrow_start_speed = 200
+# Arrow Speed
+@export var arrow_start_speed           = 200
+
+# Bubble
+@export var bubble_spawn_xs = [160, 280, 400, 520, 640]
+@export var bubble_spawn_y  = 810
 
 func _ready() -> void:
 	Player.health = 3
+	Player.score = 0
 
 func _process(delta: float) -> void:
 	if Player.health == 0:
 		game_over()
 	
+	# spawn bubbles 
+	for i in range(5):
+		if Player.spawn_bubbles[i]:
+			Player.spawn_bubbles[i] = false
+			var new_bubble = bubble_scene.instantiate()
+			new_bubble.position = Vector2(bubble_spawn_xs[i], bubble_spawn_y)
+			new_bubble.rotation = randf_range(0, 4 * PI)
+			add_child(new_bubble)
 
 func new_game() -> void:
 	Player.score = 0
+	Player.health = 3
+	arrow_start_speed = 2 * $LevelMusic.get_bpm()
 	$SpawnTimer.start()
+	set_process(true)
 
 func game_over() -> void:
-	print(Player.score)
+	set_process(false)
+	$GameOverScreen.visible = true
 	$SpawnTimer.stop()
+
+func speed_up() -> void:
+	arrow_start_speed = arrow_start_speed * $LevelMusic.get_pitch_scale()
+	$LevelMusic.speed_up()
 
 # Spawn Timer Tick
 func _on_spawn_timer_timeout() -> void:
-	arrow_start_speed += 1
+	speed_up()
 	var new_arrow = arrow_scene.instantiate()
 	var arrow_spawn_location = $SpawnPath/SpawnLocation
-	var d = randi_range(0, 5)
+	var d = randi_range(0, 4)
 	if d == 0:
 		arrow_spawn_location.progress_ratio = left_arrow_spawn_position
 	elif d == 1:
@@ -48,3 +72,6 @@ func _on_spawn_timer_timeout() -> void:
 
 func get_speed() -> int:
 	return arrow_start_speed
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/StartMenu.tscn")
