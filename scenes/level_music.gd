@@ -14,24 +14,24 @@ var song_bpm = {
 }
 
 func _ready():
-	pass
-	# TODO enable music again
-	#var random_song = get_random_song(song_list)
-	#print(random_song)
-	#load_song(random_song)	
-	#play()
+	var random_song = get_random_song(song_list)
+	print(random_song)
+	load_song(random_song)	
+	play()
 
 func get_random_song(songs):
 	randomize()  # Ensure randomness
 	var random_index = randi() % songs.size()
 	return songs[random_index]
 
-func _process(delta):
+func speed_up():
 	if current_time < duration:
-		current_time += delta
 		# Calculate the new pitch scale based on the elapsed time
 		var new_bpm = initial_bpm + (target_bpm - initial_bpm) * (current_time / duration)
 		pitch_scale = new_bpm / initial_bpm
+
+func _process(delta):
+	current_time += delta
 
 func load_song(song_name):
 	stream = load("res://songs/" + song_name)
