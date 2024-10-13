@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctbboufbgx0od"]
+[gd_scene load_steps=8 format=3 uid="uid://bgra8bqv6xir6"]
 
 [ext_resource type="Script" path="res://scenes/start_menu.gd" id="1_wjxqw"]
 [ext_resource type="Texture2D" uid="uid://o6q48p2v6hun" path="res://sprites/play.png" id="2_y4g8d"]
@@ -60,4 +60,11 @@ swipr"
 label_settings = SubResource("LabelSettings_od2mj")
 horizontal_alignment = 1
 
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 271.0
+offset_top = 970.0
+offset_right = 526.0
+offset_bottom = 1043.0
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_button_pressed"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
