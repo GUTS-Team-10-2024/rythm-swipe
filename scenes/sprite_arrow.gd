@@ -85,6 +85,7 @@ func _process(delta: float) -> void:
 			if valid:
 				var dist = position.y - perfect_zone_y
 				Player.add_score(dist)
+				Player.spawn_bubbles[direction] = true
 				queue_free()
 	
 	if position.y > dead_zone:

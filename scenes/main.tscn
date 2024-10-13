@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://mk8hjrnhbag5"]
+[gd_scene load_steps=15 format=3 uid="uid://mk8hjrnhbag5"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_g223k"]
 [ext_resource type="PackedScene" uid="uid://dnndt2mtaclls" path="res://scenes/arrow.tscn" id="2_kr3jl"]
+[ext_resource type="PackedScene" uid="uid://wq4l8k0n3ctq" path="res://scenes/bubble.tscn" id="3_1lhdd"]
 [ext_resource type="Script" path="res://scenes/spawn_timer.gd" id="3_hjm44"]
 [ext_resource type="Script" path="res://scenes/level_music.gd" id="4_by2mf"]
 [ext_resource type="Script" path="res://scenes/lives_label.gd" id="4_y62xv"]
@@ -39,6 +40,7 @@ shadow_color = Color(0, 0, 0, 0.721569)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g223k")
 arrow_scene = ExtResource("2_kr3jl")
+bubble_scene = ExtResource("3_1lhdd")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

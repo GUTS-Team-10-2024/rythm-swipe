@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbk71aos08i4f"]
+[gd_scene load_steps=6 format=3 uid="uid://wq4l8k0n3ctq"]
 
 [ext_resource type="Texture2D" uid="uid://df1qxqu8g7cur" path="res://sprites/bubble_pop1.png" id="1_ls8sl"]
+[ext_resource type="Script" path="res://scenes/bubble.gd" id="1_t7i14"]
 [ext_resource type="Texture2D" uid="uid://bkes5bwyt2mtk" path="res://sprites/bubble_pop2.png" id="2_nkvpl"]
 [ext_resource type="Texture2D" uid="uid://db8erpbrp86ma" path="res://sprites/bubble_pop3.png" id="3_8mbko"]
 
@@ -22,7 +23,10 @@ animations = [{
 }]
 
 [node name="Bubble" type="Node2D"]
+z_index = 1
+scale = Vector2(9, 9)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k6ciw")
 frame_progress = 0.941214
+script = ExtResource("1_t7i14")

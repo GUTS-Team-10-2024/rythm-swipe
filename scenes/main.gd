@@ -1,13 +1,19 @@
 extends Node2D
 
 @export var arrow_scene: PackedScene
+@export var bubble_scene: PackedScene
+# Arrow Spawn X values
 @export var left_arrow_spawn_position  = 0.20
 @export var up_arrow_spawn_position    = 0.35
 @export var hit_spawn_position         = 0.50
 @export var down_arrow_spawn_position  = 0.65
 @export var right_arrow_spawn_position = 0.80
+# Arrow Speed
 @export var arrow_start_speed           = 200
 @export var speed_increase_per_new_ball = 3.5
+# Bubble
+@export var bubble_spawn_xs = [160, 280, 400, 520, 640]
+@export var bubble_spawn_y  = 810
 
 func _ready() -> void:
 	Player.health = 3
@@ -16,6 +22,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Player.health == 0:
 		game_over()
+	
+	# spawn bubbles 
+	for i in range(5):
+		if Player.spawn_bubbles[i]:
+			Player.spawn_bubbles[i] = false
+			var new_bubble = bubble_scene.instantiate()
+			new_bubble.position = Vector2(bubble_spawn_xs[i], bubble_spawn_y)
+			new_bubble.rotation = randf_range(0, 4 * PI)
+			add_child(new_bubble)
 
 func new_game() -> void:
 	Player.score = 0
