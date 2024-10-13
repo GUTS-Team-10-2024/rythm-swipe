@@ -20,8 +20,13 @@ func _ready() -> void:
 	Player.score = 0
 
 func _process(delta: float) -> void:
+	if Player.health == 2:
+		$Heart3.visible = false
+	if Player.health == 1:
+		$Heart2.visible = false
 	if Player.health == 0:
 		game_over()
+		$Heart.visible = false
 	
 	# spawn bubbles 
 	for i in range(5):
@@ -35,6 +40,9 @@ func _process(delta: float) -> void:
 func new_game() -> void:
 	Player.score = 0
 	Player.health = 3
+	$Heart.visible = true
+	$Heart2.visible = true
+	$Heart3.visible = true
 	arrow_start_speed = 200
 	$SpawnTimer.start()
 	set_process(true)
