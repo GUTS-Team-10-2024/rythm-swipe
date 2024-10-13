@@ -13,21 +13,21 @@ var velocity = Vector2.ZERO
 # mobile swiping
 var startPos: Vector2
 var endPos: Vector2
-const threshold = 50
+const threshold = 70
+var startTime: int
+var endTime: int
 
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("tap"):
-		startPos = event.position
-	if Input.is_action_just_released("tap"):
-		endPos = event.position
-		getSwipe()
-
-func getSwipe():
+func _input(event):
 	if Input.is_action_just_pressed("tap"):
 		startPos = get_global_mouse_position()
+		startTime = get_process_delta_time()
 	if Input.is_action_just_released("tap"):
 		endPos = get_global_mouse_position()
+		endTime = get_process_delta_time()
+
+
+func getSwipe():
 	var d := endPos - startPos
 	if d.length_squared() > threshold: 
 		if abs(d.x) > abs(d.y):
@@ -40,7 +40,7 @@ func getSwipe():
 				return "down"
 			else:
 				return "up"
-	elif startPos.distance_to(endPos) > 1 and Input.is_action_just_released("tap"):
+	elif endTime == startTime and startPos.distance_squared_to(endPos) < 10:
 		return "tap"
 
 # Called when the node enters the scene tree for the first time.
@@ -75,18 +75,10 @@ func _process(delta: float) -> void:
 		user_pressed[4] = Input.is_action_pressed("right") or swipe == "right"
 		
 		if user_pressed[direction]:
-			var valid = false
-			if direction == 2:
-				# special case just for hit
-				if user_pressed == [false, false, true, false, false]:
-					valid = true
-			else:
-				valid = true
-			if valid:
-				var dist = position.y - perfect_zone_y
-				Player.add_score(dist)
-				Player.spawn_bubbles[direction] = true
-				queue_free()
+			var dist = position.y - perfect_zone_y
+			Player.add_score(dist)
+			Player.spawn_bubbles[direction] = true
+			queue_free()
 	
 	if position.y > dead_zone:
 		Player.take_damage()

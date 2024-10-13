@@ -40,3 +40,11 @@ func load_song(song_name):
 
 func _on_finished() -> void:
 	load_song(song)
+
+
+func get_current_pitch_scale():
+	return current_pitch_scale
+
+
+func get_bpm():
+	return initial_bpm
