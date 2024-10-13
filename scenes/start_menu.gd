@@ -10,4 +10,4 @@ func _on_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_option_button_item_selected(index: int) -> void:
-	Player.selected_song = 0
+	Player.selected_song = index
