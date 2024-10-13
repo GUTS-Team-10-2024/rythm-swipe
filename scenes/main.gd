@@ -10,7 +10,7 @@ extends Node2D
 @export var right_arrow_spawn_position = 0.80
 # Arrow Speed
 @export var arrow_start_speed           = 200
-@export var speed_increase_per_new_ball = 3.5
+
 # Bubble
 @export var bubble_spawn_xs = [160, 280, 400, 520, 640]
 @export var bubble_spawn_y  = 810
@@ -43,7 +43,7 @@ func new_game() -> void:
 	$Heart.visible = true
 	$Heart2.visible = true
 	$Heart3.visible = true
-	arrow_start_speed = 200
+	arrow_start_speed = 2 * $LevelMusic.get_bpm()
 	$SpawnTimer.start()
 	set_process(true)
 
@@ -53,7 +53,7 @@ func game_over() -> void:
 	$SpawnTimer.stop()
 
 func speed_up() -> void:
-	arrow_start_speed += speed_increase_per_new_ball
+	arrow_start_speed = arrow_start_speed * $LevelMusic.get_pitch_scale()
 	$LevelMusic.speed_up()
 
 # Spawn Timer Tick
