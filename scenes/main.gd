@@ -31,6 +31,7 @@ func game_over() -> void:
 
 func speed_up() -> void:
 	arrow_start_speed += speed_increase_per_new_ball
+	$LevelMusic.speed_up()
 
 # Spawn Timer Tick
 func _on_spawn_timer_timeout() -> void:
