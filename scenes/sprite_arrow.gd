@@ -40,7 +40,7 @@ func getSwipe():
 				return "down"
 			else:
 				return "up"
-	elif startPos.distance_to(endPos) == 0:
+	elif startPos.distance_to(endPos) > 1 and Input.is_action_just_released("tap"):
 		return "tap"
 
 # Called when the node enters the scene tree for the first time.
@@ -68,22 +68,17 @@ func _process(delta: float) -> void:
 		# handle input
 		var user_pressed = [false, false, false, false, false]
 		var swipe = getSwipe()
-		if Input.is_action_pressed("left") or swipe == "left":
-			user_pressed[0] = true
-		if Input.is_action_pressed("up") or swipe == "up":
-			user_pressed[1] = true
-		if Input.is_action_pressed("hit") or swipe == "tap":
-			user_pressed[2] = true
-		if Input.is_action_pressed("down") or swipe == "down":
-			user_pressed[3] = true
-		if Input.is_action_pressed("right") or swipe == "right":
-			user_pressed[4] = true
+		user_pressed[0] = Input.is_action_pressed("left") or swipe == "left"
+		user_pressed[1] = Input.is_action_pressed("up") or swipe == "up"
+		user_pressed[2] = Input.is_action_pressed("hit") or swipe == "tap"
+		user_pressed[3] = Input.is_action_pressed("down") or swipe == "down"
+		user_pressed[4] = Input.is_action_pressed("right") or swipe == "right"
 		
 		if user_pressed[direction]:
 			var valid = false
 			if direction == 2:
 				# special case just for hit
-				if not (user_pressed[0] or user_pressed[1] or user_pressed[3] or user_pressed[4]):
+				if user_pressed == [false, false, true, false, false]:
 					valid = true
 			else:
 				valid = true

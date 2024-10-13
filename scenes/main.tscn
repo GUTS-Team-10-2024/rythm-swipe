@@ -41,6 +41,7 @@ script = ExtResource("1_g223k")
 arrow_scene = ExtResource("2_kr3jl")
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 script = ExtResource("3_hjm44")
 

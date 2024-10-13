@@ -6,20 +6,21 @@ var initial_bpm = 120
 var duration = 180.0 # Duration over which the BPM will increase (in seconds)
 var current_time = 0.0
 
-var song_list = ["thick-of-it.mp3","what-is-love.mp3"]
+var song_list = ["desert_rose.mp3","disarray.mp3","loop_2.mp3","loop_18.mp3","uplifting.mp3"]
 
 var song_bpm = {
-	"thick-of-it.mp3": 146,
-	"what is love.mp3": 124
+	"desert_rose.mp3": 90,
+	"disarray.mp3": 120,
+	"loop_2.mp3": 79,
+	"loop_18.mp3": 70,
+	"uplifting.mp3": 110
 }
 
 func _ready():
-	pass
-	# TODO enable music again
-	#var random_song = get_random_song(song_list)
-	#print(random_song)
-	#load_song(random_song)	
-	#play()
+	var random_song = get_random_song(song_list)
+	print(random_song)
+	load_song(random_song)	
+	play()
 
 func get_random_song(songs):
 	randomize()  # Ensure randomness
