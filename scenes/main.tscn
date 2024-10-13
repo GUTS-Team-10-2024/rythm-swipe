@@ -126,4 +126,5 @@ text = "Back to Menu...
 script = ExtResource("8_estvy")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="finished" from="LevelMusic" to="LevelMusic" method="_on_finished"]
 [connection signal="pressed" from="GameOverScreen/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
