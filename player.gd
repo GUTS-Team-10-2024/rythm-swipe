@@ -24,9 +24,9 @@ var song_bpm = {
 	"loop_18.mp3": 70,
 	"uplifting.mp3": 110,
 	"copyright-free.mp3": 124,
-	"hey-you.mp3":120,
-	"again-sometime.mp3":120,
-	"leap-of-faith.mp3":140,
+	"hey-you.mp3":118,
+	"again-sometime.mp3":121,
+	"leap-of-faith.mp3":170,
 	"otis-mcmusic.mp3": 184
 }
 
