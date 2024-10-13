@@ -16,9 +16,9 @@ func _ready():
 		song = get_random_song(Player.song_list)
 	else:
 		song = Player.song_list[Player.selected_song]
-	initial_bpm = Player.song_bpm[song]
 	print(song)
 	load_song(song)
+	Player.bpm = initial_bpm
 	play()
 
 func get_random_song(songs):
@@ -39,6 +39,8 @@ func speed_up():
 	current_pitch_scale = (initial_bpm + rate_of_increase * current_time)/initial_bpm
 	pitch_scale = current_pitch_scale
 	current_time += 2 #MAKE SURE THIS IS EQUAL TO TIMER WAIT TIME
+	Player.pitchScale = pitch_scale
+	
 
 func load_song(song_name):
 	stream = load("res://songs/" + song_name)

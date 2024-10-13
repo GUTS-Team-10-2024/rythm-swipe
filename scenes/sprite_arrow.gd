@@ -58,8 +58,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	velocity = Vector2.DOWN * speed
 	position += velocity * delta
+	$AnimatedSprite2D.speed_scale = Player.pitchScale
 	$AnimatedSprite2D.play()
 	
 	var up_bound   = position.y > perfect_zone_y - max_distance
